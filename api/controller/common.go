@@ -7,6 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// HealthCheck.
+// @Description health check api server.
+// @Tags common
+// @Accept json
+// @Produce json
+// @Success 200
+// @Router /v1/common/healthcheck [GET]
 func HealthCheck(c *gin.Context) {
 	c.JSON(200, service.HealthCheck())
 }

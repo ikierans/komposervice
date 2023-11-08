@@ -1,0 +1,20 @@
+basePath: /
+info:
+  contact: {}
+  description: This is a documentation for the Microservice API
+  title: Microservice API Documentation
+  version: 1.0.0
+paths:
+  /v1/common/healthcheck:
+    get:
+      consumes:
+      - application/json
+      description: health check api server.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      tags:
+      - common
+swagger: "2.0"

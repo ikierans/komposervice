@@ -2,6 +2,7 @@ package main
 
 import (
 	"example/komposervice/api"
+	_ "example/komposervice/docs"
 	"example/komposervice/internal/config"
 	"fmt"
 	"log"

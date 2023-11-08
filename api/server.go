@@ -50,6 +50,9 @@ func (s *Server) router(routers ...func(*gin.Engine)) {
 func (s *Server) Run(addr string) error {
 	s.middleware(middleware.GinMiddleware)
 	s.backgroundTask()
-	s.router(router.Common)
+	s.router(
+		router.Common,
+		router.Docs,
+	)
 	return s.engine.Run(addr)
 }
