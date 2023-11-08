@@ -6,6 +6,8 @@ import (
 	"os"
 	"sort"
 
+	_ "example/komposervice/docs"
+
 	"github.com/urfave/cli/v2"
 )
 
