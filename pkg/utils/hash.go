@@ -7,10 +7,10 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func GenPassword(pass string) ([]byte, error) {
+func GenPassword(pass string) (string, error) {
 	cost, _ := strconv.Atoi(config.JwtCost)
 	hash, err := bcrypt.GenerateFromPassword([]byte(pass), cost)
-	return hash, err
+	return string(hash), err
 }
 
 func ComparePassword(hashPass string, pass string) error {
