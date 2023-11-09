@@ -27,3 +27,9 @@ func WorkerCheck(c *gin.Context) {
 	}
 	c.JSON(200, service.HealthCheck())
 }
+
+func Foo(ctx *gin.Context) {
+	// sentrygin handler will catch it just fine. Also, because we attached "someRandomTag"
+	// in the middleware before, it will be sent through as well
+	panic("y tho")
+}
