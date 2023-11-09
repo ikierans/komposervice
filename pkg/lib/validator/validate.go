@@ -39,7 +39,7 @@ func _Validate(data interface{}) []ErrorResponse {
 	return validationErrors
 }
 
-func Validator(data interface{}) string {
+func Validate(data interface{}) string {
 	if errs := _Validate(data); len(errs) > 0 && errs[0].Error {
 		errMsg := make([]string, 0)
 

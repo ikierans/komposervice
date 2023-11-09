@@ -16,7 +16,7 @@ var Command = []*cli.Command{
 		Aliases: []string{"m"},
 		Usage:   "migrate database",
 		Action: func(_ *cli.Context) error {
-			const migrateUrl = "file://pkg/db/migration"
+			const migrateUrl = "file://pkg/db/migration/"
 			databaseUrl, err := utils.ConnectionURLBuilder("pg-migrate")
 			if err != nil {
 				return err
@@ -25,7 +25,10 @@ var Command = []*cli.Command{
 			if err != nil {
 				return err
 			}
-			return _migrate.Up()
+			if err := _migrate.Up(); err != migrate.ErrNoChange {
+				return err
+			}
+			return nil
 		},
 	},
 	{

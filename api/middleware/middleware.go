@@ -1,6 +1,9 @@
 package middleware
 
 import (
+	"example/komposervice/internal/config"
+
+	sentrygin "github.com/getsentry/sentry-go/gin"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,4 +25,13 @@ func CORSMiddleware() gin.HandlerFunc {
 
 func GinMiddleware(a *gin.Engine) {
 	a.Use(CORSMiddleware())
+}
+
+func Sentry(a *gin.Engine) {
+	if config.StageStatus != "dev" {
+		a.Use(sentrygin.New(sentrygin.Options{
+			Repanic:         true,
+			WaitForDelivery: true,
+		}))
+	}
 }
