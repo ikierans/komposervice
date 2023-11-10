@@ -1,4 +1,4 @@
-package types
+package model
 
 type Users struct {
 	Username          string `json:"username"`

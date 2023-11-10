@@ -1,8 +1,8 @@
-package types
+package service
 
 import "example/komposervice/internal/schema"
 
-type IAuthService interface {
+type IAuth interface {
 	SignUp(req schema.SignUpRequest) error
 	SignIn(req schema.SignInRequest) (string, error)
 }
