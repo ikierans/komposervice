@@ -1,7 +1,7 @@
-package model
+package repository
 
 import (
-	"example/komposervice/internal/types"
+	"example/komposervice/internal/model"
 	"example/komposervice/pkg/db"
 	"time"
 
@@ -10,28 +10,28 @@ import (
 
 type Users struct {
 	conn *gorm.DB
-	data *types.Users
+	data *model.Users
 }
 
-func NewUsers() *Users {
+func NewUsers() IUsers {
 	_conn, err := db.Connection()
 	if err != nil {
 		panic(err)
 	}
 	return &Users{
 		conn: _conn,
-		data: &types.Users{},
+		data: &model.Users{},
 	}
 }
 
-func (usr *Users) GetByEmail(email string) (*types.Users, error) {
+func (usr *Users) GetByEmail(email string) (*model.Users, error) {
 	if err := usr.conn.Table("users").Where("email = ?", email).First(usr.data).Error; err != nil {
 		return nil, err
 	}
 	return usr.data, nil
 }
 
-func (usr *Users) Create(_usr *types.Users) error {
+func (usr *Users) Create(_usr *model.Users) error {
 	createAt := time.Now().UTC().Format(time.RFC3339)
 	return usr.conn.Exec(
 		`INSERT INTO users (username,hashed_password,full_name,email,password_changed_at,created_at)

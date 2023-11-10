@@ -3,18 +3,18 @@ package service
 import (
 	"errors"
 	"example/komposervice/internal/model"
+	"example/komposervice/internal/repository"
 	"example/komposervice/internal/schema"
-	"example/komposervice/internal/types"
 	"example/komposervice/pkg/utils"
 )
 
 type Auth struct {
-	repo types.IUsers
+	repo repository.IUsers
 }
 
-func NewAuth() *Auth {
+func NewAuth() IAuth {
 	return &Auth{
-		repo: model.NewUsers(),
+		repo: repository.NewUsers(),
 	}
 }
 
@@ -23,7 +23,7 @@ func (auth *Auth) SignUp(req schema.SignUpRequest) error {
 	if err != nil {
 		return err
 	}
-	return auth.repo.Create(&types.Users{
+	return auth.repo.Create(&model.Users{
 		Username:       req.Username,
 		FullName:       req.FullName,
 		Email:          req.Email,
